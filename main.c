@@ -347,7 +347,6 @@ void drawRays2D()
 		glVertex2i(r*7 + 520, lineOffset);
 		glVertex2i(r*7 + 520, lineHeight + lineOffset);
 		glEnd();
-		
 	}
 	
 	
@@ -388,6 +387,7 @@ void buttons(unsigned char key, int x, int y)
 			player.y -= player.dy;
 			player.x -= player.dx;
 			break;
+			
 	}
 	
 	glutPostRedisplay();
@@ -397,8 +397,8 @@ void init()
 {
 	glClearColor(0.3, 0.3, 0.3, 0);
 	gluOrtho2D(0, SCREEN_WIDTH, SCREEN_HEIGHT, 0);
-	player.x = 300;
-	player.y = 300;
+	player.x = 325;
+	player.y = 390;
 	player.dx = cos(player.angle);
 	player.dy = sin(player.angle);
 	initMap(&map, 8, 8, 64, "map0.txt");
