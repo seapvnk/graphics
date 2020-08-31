@@ -85,10 +85,10 @@ void drawMap2D(Map *map)
 			
 			// draw a square
 			glBegin(GL_QUADS);
-			glVertex2i(xi, yi);
-			glVertex2i(xi, yi + map->blockSize);
-			glVertex2i(xi + map->blockSize, yi + map->blockSize);
-			glVertex2i(xi + map->blockSize, yi);
+			glVertex2i(xi +1, yi +1);
+			glVertex2i(xi +1, yi + map->blockSize -1);
+			glVertex2i(xi + map->blockSize -1, yi + map->blockSize -1);
+			glVertex2i(xi + map->blockSize -1, yi + 1);
 			glEnd();
 		}
 	}
@@ -152,8 +152,18 @@ void display()
 
 void drawRays2D()
 {
+	
+	// Draw the Ground
+	glColor3f(0.15, 0.5, 0.35);
+	glBegin(GL_QUADS);
+	glVertex2i(3 + SCREEN_WIDTH/2, 0);
+	glVertex2i(3 + SCREEN_WIDTH, 0);
+	glVertex2i(3 + SCREEN_WIDTH, 2*SCREEN_HEIGHT);
+	glVertex2i(3 + SCREEN_WIDTH/2, 2*SCREEN_HEIGHT);
+	glEnd();
+	
 	// Draw the Sky
-	glColor3f(0.2, 0.1, 1);
+	glColor3f(0.8, 0.42, 0.12);
 	glBegin(GL_QUADS);
 	glVertex2i(3 + SCREEN_WIDTH/2, 0);
 	glVertex2i(3 + SCREEN_WIDTH, 0);
@@ -164,7 +174,7 @@ void drawRays2D()
 	int r, mx, my, mp, dof, finalDistance;
 	float rx, ry, ra, xi, yi;
 	
-	ra = player.angle - DR * 30;
+	ra = player.angle - DR * 45;
 	if (ra < 0)
 	{
 		ra += 2 * PI;
@@ -281,7 +291,7 @@ void drawRays2D()
 		
 		if (disV < disH)
 		{
-			glColor3f(1, 0, 0);
+			glColor3f(0.5, 0.5, 0.5);
 			finalDistance = disV;
 			rx = vx;
 			ry = vy;
@@ -289,7 +299,7 @@ void drawRays2D()
 		
 		if (disH < disV)
 		{
-			glColor3f(0.8, 0, 0);
+			glColor3f(0.3, 0.3, 0.3);
 			finalDistance = disH;
 			rx = hx;
 			ry = hy;
